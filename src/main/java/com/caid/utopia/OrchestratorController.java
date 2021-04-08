@@ -91,4 +91,39 @@ public class OrchestratorController {
 		String uri = "http://account-service/accounts" + accountNumber;
 		return restTemplate.exchange(uri, HttpMethod.DELETE, entity, Object.class);
 	}
+
+	@GetMapping(path = "/accounts/{accountNumber}/travelers")
+	public ResponseEntity<Object> getTravelersForAccount(@PathVariable Integer accountNumber,
+			@RequestHeader(name = "Authorization") String jwtToken) {
+		HttpEntity<Object> entity = createHttpEntityWithJwtToken(jwtToken);
+		String uri = "http://account-service/accounts" + accountNumber + "/travelers";
+		return restTemplate.exchange(uri, HttpMethod.GET, entity, Object.class);
+	}
+
+	@RequestMapping(path = "/accounts/{accountNumber}/travelers", method = RequestMethod.POST, consumes = "application/json")
+	public ResponseEntity<Object> postNewTraveler(@PathVariable Integer accountNumber, @RequestBody Object traveler,
+			@RequestHeader(name = "Authorization") String jwtToken) {
+		HttpEntity<Object> entity = createHttpEntityWithJwtToken(jwtToken);
+		String uri = "http://account-service/accounts" + accountNumber + "/travelers";
+		return restTemplate.exchange(uri, HttpMethod.POST, entity, Object.class);
+
+	}
+
+	@RequestMapping(path = "/accounts/{accountNumber}/travelers/{travelerId}", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<Object> updateTravelerForAccount(@PathVariable Integer accountNumber,
+			@PathVariable Integer travelerId, @RequestBody Object traveler,
+			@RequestHeader(name = "Authorization") String jwtToken) {
+		HttpEntity<Object> entity = createHttpEntityWithJwtToken(jwtToken);
+		String uri = "http://account-service/accounts" + accountNumber + "/travelers/" + travelerId;
+		return restTemplate.exchange(uri, HttpMethod.PUT, entity, Object.class);
+	}
+
+	@RequestMapping(path = "/accounts/{accountNumber}/travelers/{travelerId}", method = RequestMethod.DELETE, consumes = "application/json", produces = "application/json")
+	public ResponseEntity<Object> deleteTravelerForAccount(@PathVariable Integer accountNumber,
+			@PathVariable Integer travelerId, @RequestBody Object traveler,
+			@RequestHeader(name = "Authorization") String jwtToken) {
+		HttpEntity<Object> entity = createHttpEntityWithJwtToken(jwtToken);
+		String uri = "http://account-service/accounts" + accountNumber + "/travelers/" + travelerId;
+		return restTemplate.exchange(uri, HttpMethod.DELETE, entity, Object.class);
+	}
 }
