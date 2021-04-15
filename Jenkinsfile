@@ -42,11 +42,10 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 sh "$AWS_LOGIN"
-                sh "docker build -t utopia-eureka:$COMMIT_HASH ."
-                sh 'ls target/'
+                sh "docker build -t utopia-orchestrator:$COMMIT_HASH ."
                 sh 'docker images'
-                sh "docker tag utopia-eureka:$COMMIT_HASH $AWS_ID/utopia-eureka:$COMMIT_HASH"
-                sh "docker push $AWS_ID/utopia-eureka:$COMMIT_HASH"
+                sh "docker tag utopia-orchestrator:$COMMIT_HASH $AWS_ID/utopia-orchestrator:$COMMIT_HASH"
+                sh "docker push $AWS_ID/utopia-orchestrator:$COMMIT_HASH"
             }
         }
 
@@ -61,7 +60,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 sh 'docker system prune -f'
-            // sh "docker image prune -a"
+                // sh "docker image prune -a"
             }
         }
     }
