@@ -191,6 +191,8 @@ Resources:
               Value: !Ref DBUsername
             - Name: DB_PASSWORD
               Value: !Ref DBPassword
+            - Name: EUREKA_DEFAULT_ZONE
+              Value: 10.0.1.179
           Essential: true
           Memory: 2048
           LogConfiguration:
