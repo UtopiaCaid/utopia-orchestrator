@@ -193,7 +193,7 @@ Resources:
             - Name: DB_PASSWORD
               Value: !Ref DBPassword
             - Name: EUREKA_DEFAULT_ZONE
-              Value: ip-10-0-1-9.us-east-2.compute.internal
+              Value: 10.0.1.9
           Essential: true
           Memory: 2048
           LogConfiguration:
