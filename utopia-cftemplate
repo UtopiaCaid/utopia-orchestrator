@@ -71,6 +71,7 @@ Conditions:
   AuthenticationMS: !Equals [!Ref ApplicationName, UtopiaAuthenticationMS]
   EurekaMS: !Equals [!Ref ApplicationName, UtopiaEurekaMS]
   OrchestratorMS: !Equals [!Ref ApplicationName, UtopiaOrchestratorMS]
+  UserMS: !Equals [!Ref ApplicationName, UtopiaUserMS]
   #PassengerMS: !Equals [!Ref ApplicationName, UtopiaPassengerMS]
   #PaymentMS: !Equals [!Ref ApplicationName, UtopiaPaymentMS]
   #RouteMS: !Equals [!Ref ApplicationName, UtopiaRouteMS]
@@ -192,7 +193,7 @@ Resources:
             - Name: DB_PASSWORD
               Value: !Ref DBPassword
             - Name: EUREKA_DEFAULT_ZONE
-              Value: ip-10-0-1-73.us-east-2.compute.internal
+              Value: 10.0.1.41
           Essential: true
           Memory: 2048
           LogConfiguration:
